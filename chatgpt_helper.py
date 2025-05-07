@@ -44,13 +44,14 @@ class ChatGptHelper:
         cache_key = self._get_cache_key(input_data)
         
         # Check if we've already processed these exact inputs
-        if cache_key in ChatGptHelper._cache:
-            print("Using cached result for SaveTextFlorence node")
-            return ChatGptHelper._cache[cache_key]
+        if enable_chatgpt:
+            if cache_key in ChatGptHelper._cache:
+                print("Using cached result for ChatGptHelper node")
+                return ChatGptHelper._cache[cache_key]
         if enable_chatgpt:    
-            updated_prompt_text =self._update_prompt_chatgpt(self,chatgpt_api_key, input_prompt_text,chatgpt_instruction_text)
+            updated_prompt_text =self._update_prompt_chatgpt(chatgpt_api_key, input_prompt_text,chatgpt_instruction_text)
         #SaveTextFlorence._cache[cache_key] = result
-        return updated_prompt_text
+        return (updated_prompt_text,)
 
     def _get_cache_key(self, input_data):
         """Generate a unique hash for the input data to use as a cache key"""
@@ -60,6 +61,7 @@ class ChatGptHelper:
 
     def _update_prompt_chatgpt(self,chatgpt_api_key, prompt,chatgpt_instruction_text):
             # Set your OpenAI API key
+        print("Inside _update_prompt_chatgpt")
         client = openai.OpenAI(api_key=chatgpt_api_key)  # or use `os.getenv("OPENAI_API_KEY")`
             
         original_prompt = prompt
@@ -83,14 +85,15 @@ class ChatGptHelper:
                 ],
                 temperature=0.7
             )
-            
+        print("END Inside _update_prompt_chatgpt")    
         new_prompt = response.choices[0].message.content.strip()
+        print(new_prompt+ "check gpt response")
         return new_prompt
         
 
 
     @classmethod
-    def IS_CHANGED(cls,enable_chatgpt,chatgpt_api_key, input_prompt_text, chatgpt_instruction_text):
+    def IS_CHANGED(cls, text, file, enable_replacement, image_style, gender_age_replacement, lora_trigger, negative_prompt_text):
         """
         Tells ComfyUI whether this node should be re-executed.
         Returns None to indicate the node should be considered cached.
