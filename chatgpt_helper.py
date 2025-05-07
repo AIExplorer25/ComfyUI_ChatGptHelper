@@ -1,6 +1,7 @@
 import os
 import openai
-
+import json
+import hashlib
 
 class ChatGptHelper:
     @classmethod
@@ -89,7 +90,7 @@ class ChatGptHelper:
 
 
     @classmethod
-    def IS_CHANGED(cls, text, file, enable_replacement, image_style, gender_age_replacement, lora_trigger, negative_prompt_text):
+    def IS_CHANGED(cls,enable_chatgpt,chatgpt_api_key, input_prompt_text, chatgpt_instruction_text):
         """
         Tells ComfyUI whether this node should be re-executed.
         Returns None to indicate the node should be considered cached.
