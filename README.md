@@ -16,6 +16,6 @@ Clone the Repository:
 
 git clone https://github.com/AIExplorer25/ComfyUI_ChatGptHelper.git
 
-Navigate to ComfyUI's Custom Nodes Directory:
+Navigate to ComfyUI's Custom Nodes /ComfyUI_ChatGptHelper:
 Install the dependencies:
 pip install -r requirements.txt
