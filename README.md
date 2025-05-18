@@ -1,5 +1,5 @@
 **ComfyUI ChatGPT Helper**
-**ComfyUI ChatGPT Helper** is a custom node extension for ComfyUI that integrates OpenAI's ChatGPT capabilities directly into your ComfyUI workflows. This tool allows for dynamic prompt generation, automated text manipulation, and enhanced interactivity within your AI image generation processes.
+**ComfyUI ChatGPT Helper** is a custom node extension for ComfyUI that integrates OpenAI's ChatGPT capabilities directly into your ComfyUI workflows. This tool allows for dynamic prompt generation, automated text manipulation, and enhanced interactivity within your AI image generation processes .
 
 ✨ **Features**
 Seamless ChatGPT Integration: Incorporate ChatGPT responses into your workflows for dynamic content generation.
