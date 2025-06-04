@@ -3,7 +3,7 @@ name = "chatgpthelper"
 description = "ComfyUI ChatGPT Helper ComfyUI ChatGPT Helper is a custom node extension for ComfyUI that integrates OpenAI's ChatGPT capabilities directly into your ComfyUI workflows. This tool allows for dynamic prompt generation, automated text manipulation, and enhanced interactivity within your AI image generation processes."
 version = "1.0.0"
 license = {file = "LICENSE"}
-dependencies = ["openai"]
+dependencies = ["openai", "load_dotenv"]
 
 [project.urls]
 Repository = "https://github.com/AIExplorer25/ComfyUI_ChatGptHelper"
