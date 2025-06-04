@@ -2,6 +2,8 @@ import os
 import openai
 import json
 import hashlib
+from dotenv import load_dotenv
+load_dotenv()
 
 class ChatGptHelper:
     @classmethod
@@ -34,6 +36,10 @@ class ChatGptHelper:
         print(chatgpt_instruction_text)
         updated_prompt_text=input_prompt_text
         
+        # Use env variable if chatgpt_api_key is empty
+        if not chatgpt_api_key:
+            chatgpt_api_key = os.getenv("OPENAI_API_KEY", "")
+        
         # Generate a cache key for this specific run
         input_data = {
             "input_prompt_text": input_prompt_text,
@@ -62,7 +68,7 @@ class ChatGptHelper:
     def _update_prompt_chatgpt(self,chatgpt_api_key, prompt,chatgpt_instruction_text):
             # Set your OpenAI API key
         print("Inside _update_prompt_chatgpt")
-        client = openai.OpenAI(api_key=chatgpt_api_key)  # or use `os.getenv("OPENAI_API_KEY")`
+        client = openai.OpenAI(api_key=chatgpt_api_key)
             
         original_prompt = prompt
             
@@ -87,10 +93,8 @@ class ChatGptHelper:
             )
         print("END Inside _update_prompt_chatgpt")    
         new_prompt = response.choices[0].message.content.strip()
-        print(new_prompt+ "check gpt response")
+        print("chat gpt response: " + new_prompt)
         return new_prompt
-        
-
 
     @classmethod
     def IS_CHANGED(cls, text, file, enable_replacement, image_style, gender_age_replacement, lora_trigger, negative_prompt_text):
